@@ -1,0 +1,15 @@
+{
+  "name": "connect-node-listener-gcloud",
+  "version": "1.0.0",
+  "description": "Receive notification messages with GCloud Functions and Pub/Sub",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "DocuSign",
+  "repository": "https://github.com/docusign/xxx",
+  "license": "MIT",
+  "dependencies": {
+    "@google-cloud/pubsub": "^0.28.1"
+  }
+}

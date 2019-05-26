@@ -10,9 +10,10 @@ pull request. Thank you.
 
 ## Contents
 1. Google Cloud account (below)
-1. [Provision the Cloud Function](docs/INSTALLATION_2.md)
-1. [Provision the Cloud Function](docs/INSTALLATION_2.md)
-
+1. [Create the Pub/Sub Topic](docs/INSTALLATION_2_pub_sub_topic.md)
+1. [Create the Pub/Sub Subscription](docs/INSTALLATION_3_pub_sub_subscription.md)
+1. [Create the Cloud Function](docs/)INSTALLATION_4_cloud_function.md
+1. [Create the Service Account](docs/INSTALLATION_5_svc_account_credentials.md)
 
 ## 1. Google Cloud account
 

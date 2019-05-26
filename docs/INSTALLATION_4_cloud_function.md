@@ -1,13 +1,14 @@
 # Provision the Cloud Function
 
 #### Summary
-At the end of this article, you will have recorded the 
+At the end of this article, you will have provisioned
+the Cloud Function and recorded the 
 Google Cloud Function's `Trigger URL`.
 
 The Trigger URL will be used when you create the 
 DocuSign Connect subscription (configuration).
 The URL can also be used as an `EventNotification` setting
-if you want to add a webhood to a specific envelope 
+if you want to add a webhook to a specific envelope 
 created via the API.
 
 #### Steps
@@ -35,7 +36,7 @@ created via the API.
 
 1. Note that since we updated the form's 
    **Function to execute** field, we also needed to
-   update soure line 7 to the same name.
+   update source line 7 to the same function name.
 
 1. Note the `URL` field on the form. This is the URL
    for your function. Make a note of it for use when
@@ -132,6 +133,15 @@ Note that the Connect subscription must not
 include the envelopes' documents nor
 Certificates of Completion in the notification 
 messages.
+
+### Create Service Account credentials
+To receive the notification messages,
+your worker application must authenticate 
+with Google Cloud. 
+
+Google recommends using Service Account
+credentials. See how to 
+[Create Service Account credentials](INSTALLATION_5_svc_account_credentials.md)
 
 ### Create and configure your worker application
 You can use any software stack and any 

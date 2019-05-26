@@ -1,4 +1,4 @@
-# Provision the Cloud Pub/Sub Topic
+# Provision the Cloud Pub/Sub Subscription
 
 #### Summary
 At the end of this article, you will have recorded the 

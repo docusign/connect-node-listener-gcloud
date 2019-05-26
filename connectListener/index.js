@@ -86,6 +86,7 @@ exports.connectListener = async (req, res) => {
             res.status(401).send(`Unauthorized! HMAC did not pass!!`)
             return // EARLY return    
         }
+        debugLog('HMAC passed!');
     } else {
         // hmac is not configured or a test message. HMAC is not checked for tests.
         hmacPassed = true

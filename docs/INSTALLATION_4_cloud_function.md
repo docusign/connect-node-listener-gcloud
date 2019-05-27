@@ -21,17 +21,20 @@ created via the API.
    See figure 1, below.
 
    ![Enable Cloud Functions](03._Enable_Cloud_Functions_API.png)
+   
    Figure 1. Click **Enable API**
 
 1. Click **Create function** as shown in 
    figure 2.
 
    ![Create function](04._Create_function_button.png)
+   
    Figure 2. Click **Create Function**
 1. You will be asked to choose a name for the function.
    Then complete the Cloud Function form. See figure 3.
    
    ![Create function](05._Create_function_form.png)
+   
    Figure 3. Complete the Cloud Function form.
 
 1. Note that since we updated the form's 
@@ -51,6 +54,7 @@ created via the API.
    be listed.
 
    ![Function list](06._Functions_list.png)
+   
    Figure 4. Function list.
 
    You can now test the default Hello World function
@@ -110,6 +114,7 @@ created via the API.
    console to make changes.
 
    ![Function URL](05.5._Function_env_var.png)
+   
    Figure 5. The function's environment
    variables settings.
 
@@ -120,6 +125,7 @@ created via the API.
    shown in figure 6. 
 
    ![Function URL](07._Function_trigger_tab.png)
+   
    Figure 6. The function's trigger settings.
 
 

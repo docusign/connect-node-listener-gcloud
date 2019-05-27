@@ -15,6 +15,7 @@ will be used when you provision the Cloud Function.
    See figure 1, below.
 
    ![Create a topic](08._PubSub_start.png)
+   
    Figure 1. Click **Create a topic**
 
 1. Complete the Topic form with the topic name
@@ -22,6 +23,7 @@ will be used when you provision the Cloud Function.
    figure 2.
 
    ![Create topic](09._PubSub_create_topic.png)
+   
    Figure 2. Complete the form and click **Create**
 1. After the topic has been created, you will 
    see it listed on your Pub/Sub console.
@@ -32,6 +34,7 @@ will be used when you provision the Cloud Function.
    `projects` at the beginning.
    
    ![Topics page](10._Topic_name.png)
+   
    Figure 3. The Topics page.
 
 You now have the `Topic Name` for your topic.

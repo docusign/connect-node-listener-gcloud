@@ -27,6 +27,7 @@ your firewall.
    See figure 1.
 
    ![Topic details page](11._Create_subscription_button.png)
+   
    Figure 1. Click the **Create Subscription** button (top right).
 
 1. Complete the **Create a subscription** form.

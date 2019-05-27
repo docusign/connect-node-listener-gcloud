@@ -25,12 +25,14 @@ pull request. Thank you.
    See figure 1, below.
 
    ![View console](docs/01._cloud_functions_View_Console.png)
+   
    Figure 1. Click **View Console**
 
 1. Click **Enable billing** as shown in 
    figure 2.
 
    ![Enable billing](docs/02._Enable_billing_button.png)
+   
    Figure 2. Click **Enable billing**
 1. Complete the form for setting up
    billing.

@@ -30,7 +30,7 @@ could be written in a different language.
 ## Installation
 
 Short form instructions are below. 
-[Long form]() instructions are also available.
+[Long form](INSTALLATION.md) instructions are also available.
 
 ### Google Cloud Pub/Sub
 1. Provision a 

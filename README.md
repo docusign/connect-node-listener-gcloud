@@ -11,7 +11,7 @@ the software enqueues the message onto a
 queue for processing by other software apps.
 
 The repo 
-[connect-node-worker-gcloud](../connect-node-worker-gcloud)
+[connect-node-worker-gcloud](../../../connect-node-worker-gcloud)
 is an example worker application.
 It receives messages from the queue
 via a 

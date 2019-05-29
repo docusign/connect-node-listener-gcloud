@@ -1,7 +1,7 @@
 # Long form installation instructions
 
 This guide assumes you have limited knowledge of the
-Google Cloud produts.
+Google Cloud products.
 
 ## Feedback requested!
 If you have ideas on how these guides can be improved,

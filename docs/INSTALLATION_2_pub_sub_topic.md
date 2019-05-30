@@ -1,8 +1,9 @@
 # Provision the Cloud Pub/Sub Topic
 
 #### Summary
-At the end of this article, you will have recorded the 
-Google Cloud Pub/Sub `Topic Name`. The Topic Name
+Use this article to create 
+a Google Cloud Pub/Sub **Topic**.
+You will record the `Topic Name`, it
 will be used when you provision the Cloud Function.
 
 #### Steps 

@@ -1,8 +1,9 @@
 # Create service account credentials
 
 #### Summary
-At the end of this article, you will have a
-Service Account credential file for use
+Use this article to create a
+Service Account credential file. 
+It will be used
 with your worker application.
 
 Google 

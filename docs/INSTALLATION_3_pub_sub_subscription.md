@@ -1,10 +1,10 @@
 # Provision the Cloud Pub/Sub Subscription
 
 #### Summary
-At the end of this article, you will have recorded the 
-Google Cloud Pub/Sub Topic's `Subscription Name`. 
-The Subscription Name
-will be used when you provision your worker application behind
+Use this article to create a **Subscription**
+for your Google Cloud Pub/Sub Topic.
+You will record the `Subscription Name`, 
+it will be used when you provision your worker application behind
 your firewall.
 
 #### Steps

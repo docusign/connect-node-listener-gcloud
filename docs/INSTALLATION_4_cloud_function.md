@@ -1,11 +1,12 @@
 # Provision the Cloud Function
 
 #### Summary
-At the end of this article, you will have provisioned
-the Cloud Function and recorded the 
-Google Cloud Function's `Trigger URL`.
+Use this article to create
+a Cloud Function. 
 
-The Trigger URL will be used when you create the 
+You will record the 
+Google Cloud Function's `Trigger URL`,
+it is used when you create the 
 DocuSign Connect subscription (configuration).
 The URL can also be used as an `EventNotification` setting
 if you want to add a webhook to a specific envelope 

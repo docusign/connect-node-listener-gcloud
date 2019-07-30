@@ -166,7 +166,7 @@ function computeHmac(key, content) {
 async function enqueue(rawXML, test) {
     let error = false;
     if (test) {rawXML = ''}
-    if (!test) {test = 0}
+    if (!test) {test = ''} // Always send a string
 
     const pubsub = new PubSub()
         , topicName = process.env['TOPIC']

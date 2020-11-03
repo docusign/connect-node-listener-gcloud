@@ -10,6 +10,6 @@
   "repository": "https://github.com/docusign/xxx",
   "license": "MIT",
   "dependencies": {
-    "@google-cloud/pubsub": "^1.7.2"
+    "@google-cloud/pubsub": "^2.6.0"
   }
 }

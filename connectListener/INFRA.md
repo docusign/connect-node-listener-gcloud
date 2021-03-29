@@ -4,7 +4,7 @@ To deploy the infrastructure in your GCP subscription, follow the instructions b
 
 ## Prerequisites
 
-Ensure you have [Serverless Framework](https://www.serverless.com/framework/docs/getting-started/) installed. You will also need to setup your GCP account with Serverless. To do so, please follow the instructions from [Serverless documenation](https://www.serverless.com/framework/docs/providers/google/guide/credentials/).
+Ensure you have [Serverless Framework](https://www.serverless.com/framework/docs/getting-started/) installed. You will also need to setup your GCP account with Serverless. To do so, please follow the instructions from [Serverless documenation](https://www.serverless.com/framework/docs/providers/google/guide/credentials/). Be sure to first run `npm i` in current directory.
 
 Note: In this example, we assume you're storing your key inside `~/serverless/gcp-example/.gcloud/keyfile.json`. Please change this path in `severless.yml` if using a different path.
 

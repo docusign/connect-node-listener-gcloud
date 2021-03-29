@@ -21,6 +21,8 @@
 // The exports attribute name (the function variable) MUST match 
 // the GCloud Function name set in the Google Cloud Functions console
 
+'use strict';
+
 const crypto = require('crypto')
     , {PubSub} = require('@google-cloud/pubsub')
     ;
@@ -32,12 +34,8 @@ const sleep = (milliseconds) => {
         }
     , debugLog = msg => {if (debug) {console.log(msg)}};
 
-exports.connectListener = async (req, res) => {
-
-    //const headers = JSON.stringify(req.headers, null, 2);
-    //console.log(`<pre>Hello world!\n\nRequest headers: ${headers}</pre>`);
-  
-    const requestId = req.headers['function-execution-id'];
+exports.http = async (req, res) => {
+  const requestId = req.headers['function-execution-id'];
 
     function checkBasicAuth() {
         const name = process.env['BASIC_AUTH_NAME']

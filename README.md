@@ -27,6 +27,10 @@ This application is written in Node.js.
 The example worker app is also written in Node.js but 
 could be written in a different language.
 
+## Infrastructure
+
+To deploy the needed infra using the Serverless framework follow [these instructions](connectListener/INFRA.md) below. 
+
 ## Installation
 
 Short form instructions are below. 

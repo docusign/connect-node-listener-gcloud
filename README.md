@@ -64,7 +64,6 @@ Short form instructions are below.
       Connect subscription.
    1. **TOPIC** required. The Pub/Sub topic name. It will be
       similar to: `projects/xxx/topics/xxxxx`
-   1. **JSON**: optional. If you will be using JSON Connect events (as opposed to XML), set this variable to `true`. Otherwise leave underfined.
 
    The topic's subscription name is used by the 
    worker application.

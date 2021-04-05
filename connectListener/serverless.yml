@@ -1,0 +1,53 @@
+service: gcp-example
+
+provider:
+  name: google
+  stage: dev
+  runtime: nodejs10
+  region: ${env:LOCATION}
+  project: ${env:PROJECT_ID}
+  # The GCF credentials can be a little tricky to set up. Luckily we've documented this for you here:
+  # https://serverless.com/framework/docs/providers/google/guide/credentials/
+  #
+  # the path to the credentials file needs to be absolute
+  credentials: ~/serverless/gcp-example/.gcloud/keyfile.json
+
+frameworkVersion: '2'
+
+plugins:
+  - serverless-google-cloudfunctions
+
+# needs more granular excluding in production as only the serverless provider npm
+# package should be excluded (and not the whole node_modules directory)
+package:
+  exclude:
+    - node_modules/**
+    - .gitignore
+    - .git/**
+    - .gcloud/**
+
+functions:
+  connect:
+    handler: http
+    events:
+      - http: path
+    environment:
+      BASIC_AUTH_NAME: ${env:AUTH_NAME}
+      BASIC_AUTH_PW: ${env:AUTH_PW}
+      HMAC_1: ${env:HMAC}
+      TOPIC: projects/${env:PROJECT_ID}/topics/${env:QUEUE_NAME}
+
+resources:
+  resources:
+    - type: pubsub.v1.topic
+      name: ${env:QUEUE_NAME}
+      properties:
+        topic: ${env:QUEUE_NAME}
+    - type: pubsub.v1.subscription
+      name: ${env:QUEUE_NAME}-sub
+      properties:
+        subscription: ${env:QUEUE_NAME}-sub
+        topic: projects/${env:PROJECT_ID}/topics/${env:QUEUE_NAME}
+      metadata:
+        dependsOn:
+        - ${env:QUEUE_NAME}

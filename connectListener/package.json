@@ -11,5 +11,8 @@
   "license": "MIT",
   "dependencies": {
     "@google-cloud/pubsub": "^2.6.0"
+  },
+  "devDependencies": {
+    "serverless-google-cloudfunctions": "*"
   }
 }

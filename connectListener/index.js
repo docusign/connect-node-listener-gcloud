@@ -101,11 +101,11 @@ exports.http = async (req, res) => {
 
     if (test || hmacPassed) {
         // Step 2. Store in queue
-        let  error = await enqueue (body, test);
+        let  error = await enqueue (body, test, req.headers['content-type'].toString());
         if (error) {
             // Wait 25 sec and then try again
             await sleep(25000);
-            error = await enqueue (body, test);
+            error = await enqueue (body, test, req.headers['content-type'].toString());
         }
         if (error) {
             console.log(`${new Date().toUTCString()} Enqueue error: ${error}`);
@@ -168,15 +168,16 @@ function computeHmac(key, content) {
 * 
 * @param {string} rawBody 
 * @param {boolean||integer} test 
+* @param {string} contentType
 */
-async function enqueue(rawBody, test) {
+async function enqueue(rawBody, test, contentType) {
     let error = false;
     if (test) {rawBody = ''}
     if (!test) {test = ''} // Always send a string
 
     const pubsub = new PubSub()
         , topicName = process.env['TOPIC']
-        , data = JSON.stringify({test: test, payload: rawBody});
+        , data = JSON.stringify({test: test, contentType: contentType ,payload: rawBody});
     
     try {
         // Publish the message as a buffer

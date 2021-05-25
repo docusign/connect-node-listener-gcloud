@@ -65,9 +65,18 @@ exports.http = async (req, res) => {
 
     // Check HMAC and enqueue. Allow for test messages
     const test = (req.query && req.query.test) ? req.query.test : false
-        , rawXML = req.body.toString('utf8')
+        , rawBody = req.body.toString('utf8')
         , hmac1 = process.env['HMAC_1']
         , hmacConfigured = hmac1;
+
+    let body;
+    debugLog(`content-type is ${req.headers['content-type']}`)
+    
+    if (req.headers['content-type'].toString().includes('text/xml')) {
+        body = rawBody
+    } else if (req.headers['content-type'].toString().includes('application/json')) {
+        body = JSON.stringify(rawBody)
+    }
 
     let hmacPassed;
     if (!test && hmacConfigured) {
@@ -78,7 +87,7 @@ exports.http = async (req, res) => {
             , accountIdHeader = req.headers['x-docusign-accountid']
             , hmacSig1 = req.headers['x-docusign-signature-1']
             ;
-        hmacPassed = checkHmac(hmac1, rawXML, authDigest, accountIdHeader, hmacSig1)
+        hmacPassed = checkHmac(hmac1, body, authDigest, accountIdHeader, hmacSig1)
         if (!hmacPassed) {
             context.log.error(`${new Date().toUTCString()} HMAC did not pass!!`);
             res.status(401).send(`Unauthorized! HMAC did not pass!!`)
@@ -90,14 +99,13 @@ exports.http = async (req, res) => {
         hmacPassed = true
     }
 
-    let response; 
     if (test || hmacPassed) {
         // Step 2. Store in queue
-        let  error = await enqueue (rawXML, test);
+        let  error = await enqueue (body, test, req.headers['content-type'].toString());
         if (error) {
             // Wait 25 sec and then try again
             await sleep(25000);
-            error = await enqueue (rawXML, test);
+            error = await enqueue (body, test, req.headers['content-type'].toString());
         }
         if (error) {
             console.log(`${new Date().toUTCString()} Enqueue error: ${error}`);
@@ -117,13 +125,13 @@ exports.http = async (req, res) => {
 /**
 * 
 * @param {string} key1: The HMAC key for signature 1
-* @param {string} rawXML: the request body of the notification POST 
+* @param {string} rawBody: the request body of the notification POST 
 * @param {string} authDigest: The HMAC signature algorithmn used
 * @param {string} accountIdHeader: The account Id from the header
 * @param {string} hmacSig1: The HMAC Signature number 1
 * @returns {boolean} sigGood: Is the signatures good?
 */
-function checkHmac (key1, rawXML, authDigest, accountIdHeader, hmacSig1) {    
+function checkHmac (key1, rawBody, authDigest, accountIdHeader, hmacSig1) {    
     const authDigestExpected = 'HMACSHA256'
         , correctDigest = authDigestExpected === authDigest;
     if (!correctDigest) {return false}
@@ -134,7 +142,7 @@ function checkHmac (key1, rawXML, authDigest, accountIdHeader, hmacSig1) {
     // the secrets for the specific account.
     //
     // For this example, the key is supplied by the caller
-    const sig1good = hmacSig1 === computeHmac(key1, rawXML);
+    const sig1good = hmacSig1 === computeHmac(key1, rawBody);
     return sig1good
 }
 
@@ -158,17 +166,18 @@ function computeHmac(key, content) {
 * If test is true then a test notification is sent. 
 * See https://cloud.google.com/pubsub/docs/quickstart-client-libraries#publish_messages
 * 
-* @param {string} rawXML 
+* @param {string} rawBody 
 * @param {boolean||integer} test 
+* @param {string} contentType
 */
-async function enqueue(rawXML, test) {
+async function enqueue(rawBody, test, contentType) {
     let error = false;
-    if (test) {rawXML = ''}
+    if (test) {rawBody = ''}
     if (!test) {test = ''} // Always send a string
 
     const pubsub = new PubSub()
         , topicName = process.env['TOPIC']
-        , data = JSON.stringify({test: test, xml: rawXML});
+        , data = JSON.stringify({test: test, contentType: contentType ,payload: rawBody});
     
     try {
         // Publish the message as a buffer

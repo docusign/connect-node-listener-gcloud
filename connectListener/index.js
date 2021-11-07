@@ -142,8 +142,9 @@ function checkHmac (key1, rawBody, authDigest, accountIdHeader, hmacSig1) {
     // the secrets for the specific account.
     //
     // For this example, the key is supplied by the caller
-    const sig1good = hmacSig1 === computeHmac(key1, rawBody);
-    return sig1good
+    const hmacSig1Buffer = Buffer.from(hmacSig1);
+    const computeHmacBuffer = Buffer.from(computeHmac(key1, rawBody))
+    return crypto.timingSafeEqual(hmacSig1Buffer, computeHmacBuffer);
 }
 
 /**

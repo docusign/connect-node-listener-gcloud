@@ -65,7 +65,7 @@ exports.http = async (req, res) => {
 
     // Check HMAC and enqueue. Allow for test messages
     const test = (req.query && req.query.test) ? req.query.test : false
-        , rawBody = req.body.toString('utf8')
+        , rawBody = req.body
         , hmac1 = process.env['HMAC_1']
         , hmacConfigured = hmac1;
 
@@ -73,7 +73,7 @@ exports.http = async (req, res) => {
     debugLog(`content-type is ${req.headers['content-type']}`)
     
     if (req.headers['content-type'].toString().includes('text/xml')) {
-        body = rawBody
+        body = rawBody.toString('utf8')
     } else if (req.headers['content-type'].toString().includes('application/json')) {
         body = JSON.stringify(rawBody)
     }
@@ -89,7 +89,7 @@ exports.http = async (req, res) => {
             ;
         hmacPassed = checkHmac(hmac1, body, authDigest, accountIdHeader, hmacSig1)
         if (!hmacPassed) {
-            context.log.error(`${new Date().toUTCString()} HMAC did not pass!!`);
+            console.log(`${new Date().toUTCString()} HMAC did not pass!!`);
             res.status(401).send(`Unauthorized! HMAC did not pass!!`)
             return // EARLY return    
         }
@@ -142,8 +142,9 @@ function checkHmac (key1, rawBody, authDigest, accountIdHeader, hmacSig1) {
     // the secrets for the specific account.
     //
     // For this example, the key is supplied by the caller
-    const sig1good = hmacSig1 === computeHmac(key1, rawBody);
-    return sig1good
+    const hmacSig1Buffer = Buffer.from(hmacSig1);
+    const computeHmacBuffer = Buffer.from(computeHmac(key1, rawBody))
+    return crypto.timingSafeEqual(hmacSig1Buffer, computeHmacBuffer);
 }
 
 /**
